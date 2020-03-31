@@ -10,3 +10,9 @@ draggables.forEach(draggable => {
     draggable.classList.remove("dragging");
   });
 });
+
+containers.forEach(container => {
+  container.addEventListener("dragover", () => {
+    const draggable = document.querySelector(".dragging");
+  });
+});
