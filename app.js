@@ -22,8 +22,20 @@ containers.forEach((container) => {
 
 function getDragAfterElement(container, y) {
   const draggableElements = [
-    ...container.querySelectorAll("draggable:not(.dragging)"),
+    ...container.querySelectorAll(".draggable:not(.dragging)"),
   ];
 
-  draggableElements.reduce();
+  return draggableElements.reduce(
+    (closest, child) => {
+      const box = child.getBoundingClientRect();
+      const offset = y - box.top - box.height / 2;
+      if (offset < 0 && offset > closest.offset) {
+        return { offset: offset, element: child };
+      } else {
+        return closest;
+      }
+      console.log(offset);
+    },
+    { offset: Number.NEGATIVE_INFINITY }
+  ).element;
 }
