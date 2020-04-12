@@ -14,7 +14,16 @@ draggables.forEach((draggable) => {
 containers.forEach((container) => {
   container.addEventListener("dragover", (e) => {
     e.preventDefault();
+    const afterElement = getDragAfterElement(container, e.clientY);
     const draggable = document.querySelector(".dragging");
     container.appendChild(draggable);
   });
 });
+
+function getDragAfterElement(container, y) {
+  const draggableElements = [
+    ...container.querySelectorAll("draggable:not(.dragging)"),
+  ];
+
+  draggableElements.reduce();
+}
